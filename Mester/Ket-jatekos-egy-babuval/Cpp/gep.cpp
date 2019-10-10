@@ -31,16 +31,16 @@ void Lep(char c) {
 		message(0, "hiba, a j�t�kot a Kezd m?velettel kell kezdeni");
 	}
 	if (c != 'L' && c != 'J') {
-		message(0, "hiba, �rv�nytelen param�ter Lep-ben");
+		message(0, "hiba, �rv�nytelen param�ter Lep-ben - 1");
 	}
 	if (c == 'L') {
 		if (++x == table.size()) {
-			message(0, "hiba, �rv�nytelen param�ter Lep-ben");
+			message(0, "hiba, �rv�nytelen param�ter Lep-ben - 2");
 		}
 	}
 	else {
 		if (++y == table.size()) {
-			message(0, "hiba, �rv�nytelen param�ter Lep-ben");
+			message(0, "hiba, �rv�nytelen param�ter Lep-ben - 3");
 		}
 	}
 	point += table[x][y];
