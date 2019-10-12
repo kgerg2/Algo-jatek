@@ -29,8 +29,19 @@ int main(){
         cin.ignore();
         i++;
     }
-    s[hossz] = '\0';
-    kiszamol(s, hossz);
+    int ujhossz = 0;
+    for(i=0; i<hossz; i++){
+        if(i < hossz-2 && s[i] == '0' && s[i+1] == '0' && s[i+2] == '0'){
+            i++;
+        } else{
+            s[ujhossz] = s[i];
+            ujhossz++;
+        }
+    }
+    s[ujhossz] = '\0';
+    //cout << s << endl;
+    //cout << ujhossz << endl;
+    kiszamol(s, ujhossz);
     cout << ert[s];
     /* cout << "{" << endl;
     for (auto& it: ert) {

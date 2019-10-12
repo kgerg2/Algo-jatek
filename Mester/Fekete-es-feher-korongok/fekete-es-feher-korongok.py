@@ -1,4 +1,5 @@
 from sys import stdin, stdout, setrecursionlimit
+import re
 setrecursionlimit(10000)
 
 def main():
@@ -15,10 +16,12 @@ def main():
         ert[allas] = allas.count('1') - min(ert[j], ert[b])
         #ert[reversed(allas)] = ert[allas]
     stdin.readline()
-    szamok = stdin.readline().strip()[::2]
+    szamok = re.subn("(00)+0", "0", stdin.readline().strip()[::2])[0]
+    print(len(szamok))
+    #szamok = stdin.readline().strip()
+    #print(szamok)
     kiszamol(szamok)
     stdout.write(str(ert[szamok]))
     #print(ert)
 
-if __name__ == "__main__":
-    main()
+main()
