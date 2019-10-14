@@ -16,12 +16,19 @@ def main():
         ert[allas] = allas.count('1') - min(ert[j], ert[b])
         #ert[reversed(allas)] = ert[allas]
     stdin.readline()
-    szamok = re.subn("(00)+0", "0", stdin.readline().strip()[::2])[0]
+    szamok = stdin.readline().strip()[::2]
+    extra = 0
+    uj = True
+    while uj:
+        szamok, uj = re.subn("11", "", szamok)
+        extra += uj
+    szamok = re.subn("(00)+0", "0", szamok)[0]
+    
     print(len(szamok))
     #szamok = stdin.readline().strip()
-    #print(szamok)
+    print(szamok)
     kiszamol(szamok)
-    stdout.write(str(ert[szamok]))
+    stdout.write(str(extra+ert[szamok]))
     #print(ert)
 
 main()
