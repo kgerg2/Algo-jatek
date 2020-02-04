@@ -3,6 +3,8 @@
         "ostream": "cpp",
         "xutility": "cpp",
         "unordered_map": "cpp",
-        "iostream": "cpp"
-    }
+        "iostream": "cpp",
+        "unordered_set": "cpp"
+    },
+    "python.pythonPath": "C:\\Users\\kgerg\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe"
 }
