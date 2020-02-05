@@ -1,43 +1,78 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
+bool found(pair<bool, int> *p, pair<int, int> a, pair<int, int> b, int i){
+    if (p->second == -1)
+    {
+        if (a.first < b.first && a.second < b.second)
+        {
+            p->first = true;
+            p->second = i;
+        }
+        else if (a.first > b.first && a.second > b.second)
+        {
+            p->first = false;
+            p->second = i;
+        }
+    }
+    else
+    {
+        if (p->first && a.first > b.first && a.second > b.second ||
+            !p->first && a.first < b.first && a.second < b.second)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 int main()
 {
-    int n, s[3000], c[3000], sum;
+    int n;
+    pair<int, pair<int, int>> l[3000];
     cin >> n;
     for (int i = 0; i < n; i++)
     {
-        cin >> s[i];
+        cin >> l[i].second.second;
+        l[i].second.first = i;
     }
     for (int i = 0; i < n; i++)
     {
-        cin >> c[i];
+        cin >> l[i].first;
     }
-    sum = 300000001;
+    sort(l, l+n);
+    pair<bool, int> t[3000];
+    int minsum = 300000001;
     for (int i = 0; i < n; i++)
     {
-        for (int j = i + 1; j < n; j++)
+        t[i].second = -1;
+        for (int j = 0; j < i; j++)
         {
-            if (s[j] > s[i] && c[i] + c[j] < sum)
+            if (found(&t[i], l[i].second, l[j].second, j))
             {
-                for (int k = j + 1; k < n; k++)
+                if (l[i].first + l[j].first + l[t[i].second].first < minsum)
                 {
-                    if (s[k] > s[j] && c[i] + c[j] + c[k] < sum)
-                    {
-                        sum = c[i] + c[j] + c[k];
-                    }
+                    minsum = l[i].first + l[j].first + l[t[i].second].first;
+                }
+            }
+            if (found(&t[j], l[j].second, l[i].second, i))
+            {
+                if (l[i].first + l[j].first + l[t[j].second].first < minsum)
+                {
+                    minsum = l[i].first + l[j].first + l[t[j].second].first;
                 }
             }
         }
     }
-    if (sum == 300000001)
+    if (minsum < 300000001)
     {
-        cout << -1 << endl;
+        cout << minsum << endl;
     }
     else
     {
-        cout << sum << endl;
+        cout << -1 << endl;
     }
     return 0;
 }
