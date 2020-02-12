@@ -2,23 +2,25 @@ from sys import stdin, stdout
 
 def main():
     n, m, k = map(int, stdin.readline().split())
-    l = [set() for _ in range(n)]
+    l = [[False]*n for _ in range(n)]
 
     for _ in range(m):
         a, b = map(int, stdin.readline().split())
-        l[a-1].add(b-1)
-        l[b-1].add(a-1)
+        l[a-1][b-1] = True
+        l[b-1][a-1] = True
 
-    rosszak = {i for i, c in enumerate(l) if len(c) < k}
-    while rosszak:
+    ures = [False]*n
+    van = True
+    while van:
+        van = False
         for i, c in enumerate(l):
-            if i in rosszak:
-                l[i] = None
-            if c:
-                c -= rosszak
-        rosszak = {i for i, c in enumerate(l) if c is not None and len(c) < k}
+            if c is not ures and sum(c) < k:
+                l[i] = ures
+                for j in range(n):
+                    l[j][i] = False
+                van = True
 
-    jok = [str(i+1) for i in range(n) if l[i]]
+    jok = [str(i+1) for i in range(n) if l[i] is not ures]
     stdout.write(str(len(jok)))
     stdout.write("\n")
     stdout.write(" ".join(jok))
