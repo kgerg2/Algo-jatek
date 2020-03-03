@@ -32,9 +32,7 @@ bool BFS(int start)
                 {
                     return false;
                 }
-                
             }
-            
         }
     }
     return true;
@@ -51,8 +49,8 @@ int main()
     for (int i = 0; i < m; i++)
     {
         cin >> a >> b;
-        G[a-1].push_back(b-1);
-        G[b-1].push_back(a-1);
+        G[a - 1].push_back(b - 1);
+        G[b - 1].push_back(a - 1);
     }
 
     for (int i = 0; i < n; i++)
@@ -68,7 +66,7 @@ int main()
         {
             if (melyik[i])
             {
-                cout << i+1 << " ";
+                cout << i + 1 << " ";
             }
         }
         cout << "\n";
@@ -76,7 +74,7 @@ int main()
         {
             if (!melyik[i])
             {
-                cout << i+1 << " ";
+                cout << i + 1 << " ";
             }
         }
         cout << "\n";
